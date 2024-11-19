@@ -1,0 +1,202 @@
+From patchwork Thu Sep 12 02:50:32 2024
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Patchwork-Submitter: Sam Edwards <cfsworks@gmail.com>
+X-Patchwork-Id: 13801322
+Return-Path: 
+ <linux-arm-kernel-bounces+linux-arm-kernel=archiver.kernel.org@lists.infradead.org>
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+	aws-us-west-2-korg-lkml-1.web.codeaurora.org
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48A1DEE6426
+	for <linux-arm-kernel@archiver.kernel.org>;
+ Thu, 12 Sep 2024 02:56:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=lTLH1fwbTqdCfrwZp0L80p0RJpAcuj1IYnPdAurgWzI=; b=IZ1CoRncMqBQ/GwJY9cYjorEf7
+	nfoviGRFF0d0CeYXYq8p7X3YYUXJuovjEbdS5amJ9emXB8jY+0AFvfOwdwSyCTronszhNoFreQIEL
+	amJHj68KMv3MLPkc2inVIMVWvATtkz+913/HH0rKgYZABjVLHgmn4RiZmzDPb4shNSKXzLKaXgVld
+	x/XWiGnulspjb6ScHw7yxsg7eXbG7DjAGs9iMO0qnlN3RIVICeanlOfQnIeDzp38oOCLEhZDZXOWC
+	f2HJL6+gYFYTek9TXJGOE9K4TjucKnKYEScO1eBMWIj6Dp302sRw/yTVVKxfzpz9U1Yk7SdpvFn/f
+	r6YpytdA==;
+Received: from localhost ([::1] helo=bombadil.infradead.org)
+	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1soa0a-0000000BgJ9-27Lv;
+	Thu, 12 Sep 2024 02:56:36 +0000
+Received: from mail-pg1-x531.google.com ([2607:f8b0:4864:20::531])
+	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1soZwT-0000000BfIK-3ZVh;
+	Thu, 12 Sep 2024 02:52:23 +0000
+Received: by mail-pg1-x531.google.com with SMTP id
+ 41be03b00d2f7-7c3e1081804so272457a12.3;
+        Wed, 11 Sep 2024 19:52:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726109541; x=1726714341;
+ darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lTLH1fwbTqdCfrwZp0L80p0RJpAcuj1IYnPdAurgWzI=;
+        b=Upo2CIbDlVR2+9ClC4zS7d8vusOeoHQ8hO4aykUVsOHMzdir7klvfIejkx5RNgPzSW
+         nMLUh9oW5FSa3s+LDZYYbxIyW+xH8bwrWs5IKisDv++DhjkY3GnVDvfqwHRuEhKM4HiR
+         9os26S/HN7TxRs+BXHYoPccjjzlcoH7f3kcJ7YhKLcNNFujLgHyFJHXN+kNAvmlJD/on
+         ZVNh4kFv9006CDDsDycILJyfuQoGSsR3zS3DeIIO3MQ0osbbF3Bn9HveCSR8vzxBG5hr
+         gG95nDIJ1Nr/arNAPbXGfpMmXTgXheFqPUUrdmbNF+1cB6UxksW1N+OuPtegwRyr2bMa
+         goHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726109541; x=1726714341;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lTLH1fwbTqdCfrwZp0L80p0RJpAcuj1IYnPdAurgWzI=;
+        b=U8sTF4WqjRluEOSE1ZiJMTzvCeDS7Em4Uep7vAxL2zT2Iu+ddlOhydJstYQQG/iW7G
+         YJ/oQ65/h5LKTdoNixm1VOTwa6AFaJCkOinb0DZTMOfZ6TUGrjsRfGcPVR6WAhFrbUBz
+         ORF2hqVs7en+zi9fcsFhoVAItaSqp9wf+oeNXQrFoDgsWwHPf3YSF5QIevKc007SSsHH
+         TFrx/wacbib7Wc5KMTD8BIXUHpNTPA0Kq8/JZiqtOi3YoUOGRgCouQL7HnBW0j8G7puh
+         UJ/HtLCIQJe0ejjvVrOdRwliBoWaJUEcDJmUmfy75t3Ijt3uiISR3DS/wiQ/3h0BHS0u
+         BOug==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUrSQPb2yr7XQqE7kWtI6nDjJYLvT3qfVssVvSYZZmUI3rRHqK013LRkY3fxhrpDc2U90XWJJ+gnUlYxjOVD+8=@lists.infradead.org,
+ AJvYcCXiw3lMknkzZiKn0Z6lsKBRP0I6/0xrnn/Vz1oNAUl53xzryq49ZJPVNzDLFU+z9amvhAhR40QVyGc/AAC08+0h@lists.infradead.org
+X-Gm-Message-State: AOJu0YxUiay8Xy4jRxO2lzsQrxB9yx7ZLw54ocp8xH7Bi5G99cvtObCh
+	U5ZeoAzuP5HRSkqQgm34sO1Tuc2K3KZqfIYJ/y58f9pM8MX9tTzb
+X-Google-Smtp-Source: 
+ AGHT+IE4pgAMpAAF0j5qIkNUhLayqNKxMnq6pu3b8huQcVGkx2rCVOsWcbdufVpuBI8i32PPDllUZw==
+X-Received: by 2002:a05:6a20:b71c:b0:1cf:e5e5:263d with SMTP id
+ adf61e73a8af0-1cfe5e526e2mr7224637.35.1726109541031;
+        Wed, 11 Sep 2024 19:52:21 -0700 (PDT)
+Received: from luna.turtle.lan ([2601:1c2:c184:dc00::315])
+        by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-7db1fbbf877sm569023a12.50.2024.09.11.19.52.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Sep 2024 19:52:20 -0700 (PDT)
+From: Sam Edwards <cfsworks@gmail.com>
+X-Google-Original-From: Sam Edwards <CFSworks@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>,
+ Chris Morgan <macromorgan@hotmail.com>, Alex Zhao <zzc@rock-chips.com>,
+ Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jing Luo <jing@jing.rocks>, Kever Yang <kever.yang@rock-chips.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	=?utf-8?q?Daniel_Kukie=C5=82a?= <daniel@kukiela.pl>,
+ Joshua Riek <jjriek@verizon.net>, Sam Edwards <CFSworks@gmail.com>,
+ soxrok2212 <soxrok2212@gmail.com>
+Subject: [PATCH 3/5] arm64: dts: rockchip: Enable automatic fan control on
+ Turing RK1
+Date: Wed, 11 Sep 2024 19:50:32 -0700
+Message-ID: <20240912025034.180233-4-CFSworks@gmail.com>
+X-Mailer: git-send-email 2.44.2
+In-Reply-To: <20240912025034.180233-1-CFSworks@gmail.com>
+References: <20240912025034.180233-1-CFSworks@gmail.com>
+MIME-Version: 1.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20240911_195221_916404_8B2E0EF0 
+X-CRM114-Status: GOOD (  11.77  )
+X-BeenThere: linux-arm-kernel@lists.infradead.org
+X-Mailman-Version: 2.1.34
+Precedence: list
+List-Id: <linux-arm-kernel.lists.infradead.org>
+List-Unsubscribe: 
+ <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
+List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
+List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
+List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
+List-Subscribe: 
+ <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+Errors-To: 
+ linux-arm-kernel-bounces+linux-arm-kernel=archiver.kernel.org@lists.infradead.org
+
+This patch adds thermal trip points and cooling maps to the Turing RK1
+in order to enable automatic control of the external PWM fan. The fan is
+not active below 45C, as the heatsink alone can generally keep the chip
+in this temperature region at idle load. This cooling profile errs on
+the side of quietness, since the RK1 is commonly deployed in a Turing
+Pi 2 clusterboard alongside three others, with additional cooling
+provided at the chassis level.
+
+Helped-by: soxrok2212 <soxrok2212@gmail.com>
+Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+---
+ .../boot/dts/rockchip/rk3588-turing-rk1.dtsi  | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
+index 9bcb5acdea54..f6a12fe12d45 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
+@@ -126,6 +126,61 @@ &gmac1_rgmii_clk
+ 	status = "okay";
+ };
+ 
++&package_thermal {
++	polling-delay = <1000>;
++
++	trips {
++		package_active1: trip-active1 {
++			temperature = <45000>;
++			hysteresis = <5000>;
++			type = "active";
++		};
++		package_active2: trip-active2 {
++			temperature = <50000>;
++			hysteresis = <5000>;
++			type = "active";
++		};
++		package_active3: trip-active3 {
++			temperature = <60000>;
++			hysteresis = <5000>;
++			type = "active";
++		};
++		package_active4: trip-active4 {
++			temperature = <70000>;
++			hysteresis = <5000>;
++			type = "active";
++		};
++		package_active5: trip-active5 {
++			temperature = <80000>;
++			hysteresis = <5000>;
++			type = "active";
++		};
++	};
++
++	cooling-maps {
++		map1 {
++			trip = <&package_active1>;
++			cooling-device = <&fan 1 1>;
++		};
++		map2 {
++			trip = <&package_active2>;
++			cooling-device = <&fan 2 2>;
++		};
++		map3 {
++			trip = <&package_active3>;
++			cooling-device = <&fan 3 3>;
++		};
++		map4 {
++			trip = <&package_active4>;
++			cooling-device = <&fan 4 4>;
++		};
++		map5 {
++			trip = <&package_active5>;
++			cooling-device = <&fan 5 5>;
++		};
++	};
++};
++
+ &i2c0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c0m2_xfer>;
