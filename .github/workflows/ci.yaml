@@ -60,7 +60,7 @@ jobs:
         run: make kernel
         env:
           PUSH: '1'
-          USERNAME: ${{ github.actor }}
+          USERNAME: ${{ env.USER }}
           PLATFORM: linux/arm64
           PROGRESS: plain
           CI_ARGS: "--cache-from=${{ env.REGISTRY }}/${{ env.USER }}/kernel:cache --cache-to=${{ env.REGISTRY }}/${{ env.USER }}/kernel:cache"
