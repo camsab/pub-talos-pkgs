@@ -58,7 +58,7 @@ jobs:
 
 
       - name: Build and push turingrk1 kernel image
-        run: make
+        run: make kernel
         env:
           PUSH: '1'
           USERNAME: ${{ github.actor }}
