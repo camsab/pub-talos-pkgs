@@ -23,6 +23,8 @@ steps:
         export PKG_CONFIG_PATH=/usr/lib/pkgconfig
 
         ./configure \
+             --with-default-run-dir=/run/lvm \
+             --with-default-locking-dir=/run/lock/lvm \
              --with-thin=internal \
              --with-cache=none \
              --disable-udev-systemd-background-jobs \
@@ -36,7 +38,8 @@ steps:
              --enable-udev_sync \
              --enable-udev_rules \
              --enable-static_link \
-             --with-udev-prefix=/usr
+             --with-udev-prefix=/usr \
+             MODPROBE_CMD=/sbin/modprobe
 
         rm -f /sbin/blkdeactivate \
               /sbin/fsadm \
@@ -93,6 +96,9 @@ steps:
     install:
       - |
         make DESTDIR=/rootfs install
+
+        # LVM activation is handled by Talos itself
+        rm -f /rootfs/usr/lib/udev/rules.d/69-dm-lvm.rules
 finalize:
   - from: /rootfs
     to: /
