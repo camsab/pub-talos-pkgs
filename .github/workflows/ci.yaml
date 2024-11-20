@@ -5,6 +5,8 @@ on:
     branches: [ 'main', 'release-*', 'next-lts' ]
     tags:
       - "v*"
+  workflow_dispatch:
+    
 env:
   REGISTRY: registry.camsab.me:443
   USER: "talos"
