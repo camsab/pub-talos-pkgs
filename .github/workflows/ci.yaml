@@ -65,4 +65,5 @@ jobs:
           USERNAME: ${{ github.actor }}
           PLATFORM: linux/arm64
           PROGRESS: plain
+          REGISTRY_AND_USERNAME: ${{ env.REGISTRY }}/${{ env.USER }}
           CI_ARGS: "--cache-from=${{ env.REGISTRY }}/${{ env.USER }}/kernel:cache --cache-to=${{ env.REGISTRY }}/${{ env.USER }}/kernel:cache"
