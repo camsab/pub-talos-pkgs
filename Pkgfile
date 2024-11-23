@@ -27,7 +27,7 @@ vars:
   dosfstools_sha512: 3cc0808edb4432428df8a67da4bb314fd1f27adc4a05754c1a492091741a7b6875ebd9f6a509cc4c5ad85643fc40395b6e0cadee548b25cc439cc9b725980156
 
   # renovate: datasource=github-tags extractVersion=^drbd-(?<version>.*)$ depName=LINBIT/drbd
-  drbd_version: 9.2.11
+  drbd_version: 9.2.12
   drbd_sha256: 016127238d5e0585130ec9558d991347e5360fb3c075283c62ea67f661bcd66b
   drbd_sha512: 437e50d588b37aece7583eed06236c82931a41ab69f6835853fbeaf05125e4d5e0d1a81f501971e6773f86703d71d604ee3e1f0634faa9a03c3379d8297ed1cc
 
@@ -68,12 +68,12 @@ vars:
   iptables_sha512: 4937020bf52d57a45b76e1eba125214a2f4531de52ff1d15185faeef8bea0cd90eb77f99f81baa573944aa122f350a7198cef41d70594e1b65514784addbcc40
 
   # renovate: datasource=git-refs versioning=git depName=https://github.com/ipxe/ipxe.git
-  ipxe_ref: 8fc11d8a4ad41f15af3d081250865f971312d871
+  ipxe_ref: e9a23a5b394f40c1525c40416105eaaa1787f749
   ipxe_sha256: 55b19ba8972019f1286baa82643de9f0904838fe1491996a91a97748ef04f7ea
   ipxe_sha512: 51f111f5e18c18194c0ad44debebb45e0d5f18efcbc1aef9e03cfa849d122bee439c237d85a8f94299b39453f7cba52b3aab1217d2f39fafe7576352d7050710
 
   # renovate: datasource=git-tags extractVersion=^v(?<version>.*)$ depName=git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-  linux_version: 6.6.62
+  linux_version: 6.6.63
   linux_sha256: e2c35611775534941b9d4dd871f3ae5b988b6594dc9033b5ca784366e07d9336
   linux_sha512: 9b49ff136afe1044ed29b776246d91fbbc9976629f3dd30bd0ee233664db10c35cd1791fc1c82c0d9b2db8829e562c547db43da60a6de962100f2a0dbdbbd00c
 
@@ -126,7 +126,7 @@ vars:
   libsepol_sha512: 85d12d0ba5a7a3225f08d041a18fd59641608db5e0a78a1e9649754e45be54a807cd422d4889b88da6e806b4af546336c7a0913448f08ac33dc6ffb983890ef8
 
   # renovate: datasource=git-tags extractVersion=^libcap-(?<version>.*)$ depName=git://git.kernel.org/pub/scm/libs/libcap/libcap.git
-  libcap_version: 2.71
+  libcap_version: 2.72
   libcap_sha256: b7006c9af5168315f35fc734bf1a8d2aa70766bd8b8c4340962e05b19c35b900
   libcap_sha512: 59bb6781d96776595ad3df890f4e5188380634eabbb6128f3a5307946b01cf3bd19dee8a29d3e501de1d9e1c6ed0092c4cd5adc91da227a1260c1f4356cc0bf3
 
