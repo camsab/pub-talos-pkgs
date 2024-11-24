@@ -4956,7 +4956,7 @@ CONFIG_V4L_MEM2MEM_DRIVERS=y
 #
 # Rockchip media platform drivers
 #
-CONFIG_VIDEO_ROCKCHIP_RGA=[m]
+CONFIG_VIDEO_ROCKCHIP_RGA=m
 # CONFIG_VIDEO_ROCKCHIP_ISP1 is not set
 
 #
@@ -4985,7 +4985,7 @@ CONFIG_VIDEO_ROCKCHIP_RGA=[m]
 #
 # Verisilicon media platform drivers
 #
-CONFIG_VIDEO_HANTRO=[m]
+CONFIG_VIDEO_HANTRO=m
 
 #
 # VIA media platform drivers
