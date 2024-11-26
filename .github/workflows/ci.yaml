@@ -46,8 +46,8 @@ jobs:
           driver-opts: |
             namespace=actions-runner
             replicas=1
-            nodeselector=kubernetes.io/hostname=rk1-3
-            limits.memory=4G
+            nodeselector=kubernetes.io/hostname=rk1-4
+            limits.memory=8G
             limits.ephemeral-storage=10G
 
       - name: Checkout
