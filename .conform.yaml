@@ -13,6 +13,7 @@ policies:
       spellcheck:
         locale: US
       maximumOfOneCommit: false
+      maximumOfOneCommit: false
       header:
         length: 89
         imperative: true
