@@ -8,10 +8,10 @@ index 4321332..a6eaff1 100644
  #include <dt-bindings/pinctrl/rockchip.h>
 +#include <dt-bindings/soc/rockchip,vop2.h>
  #include "rk3588.dtsi"
-
+ 
  / {
-@@ -23,7 +24,7 @@ aliases {
-
+@@ -23,7 +24,7 @@
+ 
  	fan: pwm-fan {
  		compatible = "pwm-fan";
 -		cooling-levels = <0 25 95 145 195 255>;
@@ -19,10 +19,18 @@ index 4321332..a6eaff1 100644
  		fan-supply = <&vcc5v0_sys>;
  		pinctrl-names = "default";
  		pinctrl-0 = <&pwm0m2_pins &fan_int>;
-@@ -101,6 +102,30 @@ &cpu_l3 {
+@@ -42,7 +43,6 @@
+ 		gpios = <&gpio2 RK_PC5 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&vcc3v3_pcie30_en>;
+-		startup-delay-us = <5000>;
+ 	};
+ 
+ 	vcc5v0_sys: vcc5v0-sys-regulator {
+@@ -101,6 +101,30 @@
  	cpu-supply = <&vdd_cpu_lit_s0>;
  };
-
+ 
 +&gpu {
 +	mali-supply = <&vdd_gpu_s0>;
 +	status = "okay";
@@ -50,7 +58,7 @@ index 4321332..a6eaff1 100644
  &gmac1 {
  	clock_in_out = "output";
  	phy-handle = <&rgmii_phy>;
-@@ -186,6 +211,7 @@ hym8563: rtc@51 {
+@@ -186,6 +210,7 @@
  		compatible = "haoyu,hym8563";
  		reg = <0x51>;
  		#clock-cells = <0>;
@@ -58,10 +66,10 @@ index 4321332..a6eaff1 100644
  		clock-output-names = "hym8563";
  		pinctrl-names = "default";
  		pinctrl-0 = <&hym8563_int>;
-@@ -208,6 +234,36 @@ rgmii_phy: ethernet-phy@1 {
+@@ -208,6 +233,36 @@
  	};
  };
-
+ 
 +&package_thermal {
 +	polling-delay = <1000>;
 +
@@ -95,7 +103,7 @@ index 4321332..a6eaff1 100644
  &pcie2x1l1 {
  	linux,pci-domain = <1>;
  	pinctrl-names = "default";
-@@ -223,7 +279,7 @@ &pcie30phy {
+@@ -223,7 +278,7 @@
  &pcie3x4 {
  	linux,pci-domain = <0>;
  	pinctrl-names = "default";
@@ -104,23 +112,23 @@ index 4321332..a6eaff1 100644
  	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
  	vpcie3v3-supply = <&vcc3v3_pcie30>;
  	status = "okay";
-@@ -296,7 +352,6 @@ pmic@0 {
+@@ -296,7 +351,6 @@
  		pinctrl-names = "default";
  		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
  			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
 -		system-power-controller;
-
+ 
  		vcc1-supply = <&vcc5v0_sys>;
  		vcc2-supply = <&vcc5v0_sys>;
-@@ -334,6 +389,7 @@ rk806_dvs3_null: dvs3-null-pins {
-
+@@ -334,6 +388,7 @@
+ 
  		regulators {
  			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
 +				regulator-always-on;
  				regulator-boot-on;
  				regulator-min-microvolt = <550000>;
  				regulator-max-microvolt = <950000>;
-@@ -614,3 +670,18 @@ &uart9 {
+@@ -614,3 +669,18 @@
  	pinctrl-0 = <&uart9m0_xfer>;
  	status = "okay";
  };
@@ -144,10 +152,10 @@ diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi b/arch/arm64/
 index d136841..fc9a86c 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
-@@ -1784,6 +1784,13 @@ pcie30x4m0_pins: pcie30x4m0-pins {
+@@ -1784,6 +1784,13 @@
  				<0 RK_PC7 12 &pcfg_pull_none>;
  		};
-
+ 
 +		/omit-if-no-ref/
 +		pcie30x4_clkreqn_m1: pcie30x4-clkreqn-m1 {
 +			rockchip,pins =

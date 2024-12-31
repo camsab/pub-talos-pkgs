@@ -2,12 +2,12 @@ diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts
 index fc67585..86b569f 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -337,19 +337,15 @@ l2_cache_b3: l2-cache-b3 {
+@@ -337,19 +337,15 @@
  			cache-unified;
  			next-level-cache = <&l3_cache>;
  		};
 -	};
-
+ 
 -	/*
 -	 * The L3 cache belongs to the DynamIQ Shared Unit (DSU),
 -	 * so it's represented here, outside the "cpus" node
@@ -28,12 +28,12 @@ index fc67585..86b569f 100644
 +			cache-unified;
 +		};
  	};
-
+ 
  	display_subsystem: display-subsystem {
-@@ -570,6 +566,17 @@ mmu600_php: iommu@fcb00000 {
+@@ -570,6 +566,17 @@
  		status = "disabled";
  	};
-
+ 
 +	rga: rga@fdb80000 {
 +		compatible = "rockchip,rk3568-rga", "rockchip,rk3288-rga";
 +		reg = <0x0 0xfdb80000 0x0 0x1000>;
@@ -48,10 +48,10 @@ index fc67585..86b569f 100644
  	pmu1grf: syscon@fd58a000 {
  		compatible = "rockchip,rk3588-pmugrf", "syscon", "simple-mfd";
  		reg = <0x0 0xfd58a000 0x0 0x10000>;
-@@ -1147,17 +1154,6 @@ vpu121_mmu: iommu@fdb50800 {
+@@ -1147,17 +1154,6 @@
  		#iommu-cells = <0>;
  	};
-
+ 
 -	rga: rga@fdb80000 {
 -		compatible = "rockchip,rk3588-rga", "rockchip,rk3288-rga";
 -		reg = <0x0 0xfdb80000 0x0 0x180>;
@@ -66,10 +66,10 @@ index fc67585..86b569f 100644
  	vepu121_0: video-codec@fdba0000 {
  		compatible = "rockchip,rk3588-vepu121";
  		reg = <0x0 0xfdba0000 0x0 0x800>;
-@@ -1238,6 +1234,44 @@ vepu121_3_mmu: iommu@fdbac800 {
+@@ -1238,6 +1234,44 @@
  		#iommu-cells = <0>;
  	};
-
+ 
 +	vdec0: video-decoder@fdc38000 {
 +		compatible = "rockchip,rk3588-vdec";
 +		reg = <0x0 0xfdc38000 0x0 0x100>, <0x0 0xfdc38100 0x0 0x500>, <0x0 0xfdc38600 0x0 0x100>;
@@ -111,7 +111,7 @@ index fc67585..86b569f 100644
  	av1d: video-codec@fdc70000 {
  		compatible = "rockchip,rk3588-av1-vpu";
  		reg = <0x0 0xfdc70000 0x0 0x800>;
-@@ -1272,6 +1306,14 @@ vop: vop@fdd90000 {
+@@ -1272,6 +1306,14 @@
  			      "pclk_vop";
  		iommus = <&vop_mmu>;
  		power-domains = <&power RK3588_PD_VOP>;
@@ -126,10 +126,10 @@ index fc67585..86b569f 100644
  		rockchip,grf = <&sys_grf>;
  		rockchip,vop-grf = <&vop_grf>;
  		rockchip,vo1-grf = <&vo1_grf>;
-@@ -1370,6 +1412,48 @@ i2s9_8ch: i2s@fddfc000 {
+@@ -1370,6 +1412,48 @@
  		status = "disabled";
  	};
-
+ 
 +	hdmi0: hdmi@fde80000 {
 +		compatible = "rockchip,rk3588-dw-hdmi-qp";
 +		reg = <0x0 0xfde80000 0x0 0x20000>;
@@ -175,10 +175,10 @@ index fc67585..86b569f 100644
  	qos_gpu_m0: qos@fdf35000 {
  		compatible = "rockchip,rk3588-qos", "syscon";
  		reg = <0x0 0xfdf35000 0x0 0x20>;
-@@ -1879,6 +1963,27 @@ sdhci: mmc@fe2e0000 {
+@@ -1879,6 +1963,27 @@
  		status = "disabled";
  	};
-
+ 
 +	crypto: crypto@fe370000 {
 +		compatible = "rockchip,rk3588-crypto";
 +		reg = <0x0 0xfe370000 0x0 0x2000>;
@@ -203,7 +203,7 @@ index fc67585..86b569f 100644
  	i2s0_8ch: i2s@fe470000 {
  		compatible = "rockchip,rk3588-i2s-tdm";
  		reg = <0x0 0xfe470000 0x0 0x1000>;
-@@ -2770,6 +2875,7 @@ hdptxphy_hdmi0: phy@fed60000 {
+@@ -2770,6 +2875,7 @@
  		reg = <0x0 0xfed60000 0x0 0x2000>;
  		clocks = <&cru CLK_USB2PHY_HDPTXRXPHY_REF>, <&cru PCLK_HDPTX0>;
  		clock-names = "ref", "apb";
@@ -211,7 +211,7 @@ index fc67585..86b569f 100644
  		#phy-cells = <0>;
  		resets = <&cru SRST_HDPTX0>, <&cru SRST_P_HDPTX0>,
  			 <&cru SRST_HDPTX0_INIT>, <&cru SRST_HDPTX0_CMN>,
-@@ -2841,6 +2947,16 @@ system_sram2: sram@ff001000 {
+@@ -2841,6 +2947,16 @@
  		ranges = <0x0 0x0 0xff001000 0xef000>;
  		#address-cells = <1>;
  		#size-cells = <1>;
@@ -226,5 +226,5 @@ index fc67585..86b569f 100644
 +			pool;
 +		};
  	};
-
+ 
  	pinctrl: pinctrl {
