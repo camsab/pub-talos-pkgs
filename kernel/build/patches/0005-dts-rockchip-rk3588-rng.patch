@@ -2,6 +2,7 @@ The code comes from the patch below however in 6.12 the rk3588s.dtsi file has be
 https://github.com/torvalds/linux/commit/def88eb4d8365a4aa064d28405d03550a9d0a3be
 All the code seems to be split in "-base" and "-extra"so this patch is now applied to rk3588-base.dtsi 
 
+The code is already in the Kernel but the HW is not enabled so we only need the DTS Patch
 From 235ccbb0d859a5ff1ff6cc01daeb69effca933f8 Mon Sep 17 00:00:00 2001
 From: Muhammed Efe Cetin <efectn@protonmail.com>
 Date: Thu, 16 Nov 2023 17:52:35 +0300

@@ -73,16 +73,16 @@ vars:
   ipxe_sha512: c5b8ec789fad016d3dfa325a601857e357ecd26fd353d8d657901898817ee1d7dc76d513811c81fdee2a9dc001af4c6d7285f736db9a1d6abd890e8e09b57c27
 
   # renovate: datasource=git-tags extractVersion=^v(?<version>.*)$ depName=git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-  linux_version: 6.13-rc5
-  linux_sha256: 239e682ad1b9e3b25d4786ea0cea8d9919f4582b6880e204dab2d7dbdae0187a
-  linux_sha512: f6a4a1f17965487215c0a8dfda396b3636981a7af36f2a5f17f775b2df7fc20d0437967e9eca3e5d44631374ccb8e6d86523c9a7d35de81713454d256bd96f27
+  linux_version: 6.13-rc6
+  linux_sha256: 72ea3f321bf17e34ff01cfc3562ea8164b19b343805d52b4d84cbdb4b3114d7f
+  linux_sha512: b28fcc91309fe00cc8999d89816680a98c58629d44c9a589daa080445fbc90f90b5199a8f2b78eb3f7ce092c6a9f4f080ddb995940400a34ebe00087799c4444
 
   # renovate: datasource=git-tags extractVersion=^v(?<version>.*)$ depName=git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git
   kmod_version: 33
   kmod_sha256: dc768b3155172091f56dc69430b5481f2d76ecd9ccb54ead8c2540dbcf5ea9bc
   kmod_sha512: 32d79d0bb7e89012f18458d4e88325f8e19a7dba6e1d5cff01aec3e618d1757b0f7c119735bf38d02e0d056a14273fd7522fca7c61a4d12a3ea5854bb662fff8
 
-  # renovate: datasource=git-tags extractVersion=^libaio-(?<version>.*)$ depName=https://pagure.io/libaio.git
+  # renovate: datasource=git-tags extractVersion=^libaio-(?<version>.*linux-6.13-rc6.tar.gz)$ depName=https://pagure.io/libaio.git
   libaio_version: 0.3.113
   libaio_sha256: 2c44d1c5fd0d43752287c9ae1eb9c023f04ef848ea8d4aafa46e9aedb678200b
   libaio_sha512: 65c30a102433bf8386581b03fc706d84bd341be249fbdee11a032b237a7b239e8c27413504fef15e2797b1acd67f752526637005889590ecb380e2e120ab0b71
