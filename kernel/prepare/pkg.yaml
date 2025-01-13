@@ -5,7 +5,7 @@ dependencies:
   - image: '{{ .TOOLS_IMAGE }}'
 steps:
   - sources:
-      - url: https://git.kernel.org/torvalds/t/linux-6.13-rc6.tar.gz
+      - url: https://git.kernel.org/torvalds/t/linux-6.13-rc7.tar.gz
         #url: https://cdn.kernel.org/pub/linux/kernel/v{{ regexReplaceAll "(\\d+)(.\\d+)(\\.\\d+)?$" .linux_version "${1}" }}.x/linux-{{ .linux_version }}.tar.xz
         destination: linux.tar.gz
         sha256: "{{ .linux_sha256 }}"
